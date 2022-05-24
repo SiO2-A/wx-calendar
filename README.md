@@ -19,3 +19,8 @@
 |  ----  | ----  | ----  |
 | getDateList | 渲染某个月份，注意：不能代指现在的月份，在加载时会获取当前月以及上下两月的 | {setMonth，setYear} setMonth：渲染的月，setYear：渲染的年 |
 | selectDay | 选中的日期 | { day, month, year} 选中日期的年月日 |
+
+#### 联系作者
+
+1.  邮箱 1609762425@qq.com
+2.  微信 gg6630gg
