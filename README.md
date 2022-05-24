@@ -1,37 +1,20 @@
-# calendar
+# 日历组件，带标点带展开功能
+<iframe src="https://pcsdata.baidu.com/thumbnail/1332e6e45r41a8a1302c095cf7c5c00c?fid=665664031-16051585-369158655744090&rt=pr&sign=FDTAER-yUdy3dSFZ0SVxtzShv1zcMqd-3XmrS9de6KIOgK32rdkZS5zD9MM%3D&expires=2h&chkv=0&chkbd=0&chkpc=&dp-logid=9097036543144491384&dp-callid=0&time=1653379200&bus_no=26&size=c1600_u1600&quality=100&vuk=-&ft=video" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 
-#### 介绍
-简单好用的原生小程序日历组件
+> /component/calendar 组件主体
 
-#### 软件架构
-软件架构说明
-
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+> /index组件演示
 
 
-#### 特技
+## 属性列表和说明
+|  属性名  | 说明  | 类型  | 默认值  |
+|  ----  | ----  | ----  | ----  |
+| spotMap | 标点的日期对象，属性名为具体日期如：y2000m10d10，属性值为'spot'或'deep-spot'，颜色分别为青色和橙色 | Object | {} |
+| defaultTime | 标记的日期，默认为今日 | String | '' |
+| title | 日历的标题，默认无 | String | '' |
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+## 传递的方法
+|  方法名  | 说明  | detail值  |
+|  ----  | ----  | ----  |
+| getDateList | 渲染某个月份，注意：不能代指现在的月份，在加载时会获取当前月以及上下两月的 | {setMonth，setYear} setMonth：渲染的月，setYear：渲染的年 |
+| selectDay | 选中的日期 | { day, month, year} 选中日期的年月日 |
