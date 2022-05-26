@@ -13,6 +13,9 @@
 | spotMap | 标点的日期对象，属性名为具体日期如：y2000m10d10，属性值为'spot'或'deep-spot'，颜色分别为青色和橙色 | Object | {} |
 | defaultTime | 标记的日期，默认为今日 | String | '' |
 | title | 日历的标题，默认无 | String | '' |
+| goNow | 是否有快速回到今天的功能 | Boolean | true |
+| defaultOpen | 是否是打开状态 | Boolean | true |
+| showShrink | 是否显示收缩展开 | Boolean | true |
 
 ## 传递的方法
 |  方法名  | 说明  | detail值  |

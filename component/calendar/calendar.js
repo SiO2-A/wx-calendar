@@ -19,7 +19,15 @@ Component({
         goNow: { // 是否有快速回到今天的功能
             type: Boolean,
             value: true,
-        }
+        },
+        defaultOpen: { // 是否有快速回到今天的功能
+            type: Boolean,
+            value: false,
+        },
+        showShrink: { // 是否显示收缩展开功能
+            type: Boolean,
+            value: true,
+        },
     },
 
     /**
@@ -358,5 +366,11 @@ Component({
             this.setSwiperHeight(1)
         }
     },
-    observers: {}
+    observers: {
+        defaultOpen(value){
+            this.setData({
+                open:value
+            })
+        }
+    }
 })

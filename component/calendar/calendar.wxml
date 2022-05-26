@@ -45,7 +45,7 @@
             </view>
         </swiper-item>
     </swiper>
-    <view catchtap="openChange" class="flex list-open">
+    <view wx:if="{{showShrink}}" catchtap="openChange" class="flex list-open">
         <view class="icon {{open?'fold':'unfold'}}"></view>
     </view>
 </view>
