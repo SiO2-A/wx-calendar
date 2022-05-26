@@ -14,7 +14,7 @@
 | defaultTime | 标记的日期，默认为今日 | String | '' |
 | title | 日历的标题，默认无 | String | '' |
 | goNow | 是否有快速回到今天的功能 | Boolean | true |
-| defaultOpen | 是否是打开状态 | Boolean | true |
+| defaultOpen | 是否是打开状态 | Boolean | false |
 | showShrink | 是否显示收缩展开 | Boolean | true |
 
 ## 传递的方法

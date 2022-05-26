@@ -20,7 +20,7 @@ Component({
             type: Boolean,
             value: true,
         },
-        defaultOpen: { // 是否有快速回到今天的功能
+        defaultOpen: { // 是否是打开状态
             type: Boolean,
             value: false,
         },
