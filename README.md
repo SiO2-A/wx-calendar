@@ -1,6 +1,6 @@
 # 日历组件，带标点带展开功能
 <p align="center">
-    <img src="https://pcsdata.baidu.com/thumbnail/1332e6e45r41a8a1302c095cf7c5c00c?fid=665664031-16051585-369158655744090&rt=pr&sign=FDTAER-yUdy3dSFZ0SVxtzShv1zcMqd-3XmrS9de6KIOgK32rdkZS5zD9MM%3D&expires=2h&chkv=0&chkbd=0&chkpc=&dp-logid=9097036543144491384&dp-callid=0&time=1653379200&bus_no=26&size=c1600_u1600&quality=100&vuk=-&ft=video" width="256">
+    <img src="https://img-blog.csdnimg.cn/img_convert/fff81de5b3a83c4f3a652038a5fad74c.gif" width="256">
 </p>
 
 > /component/calendar 组件主体
