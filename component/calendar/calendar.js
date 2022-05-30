@@ -345,7 +345,7 @@ Component({
         },
     },
     lifetimes: {
-        attached() {
+        ready() {
             let now = this.data.defaultTime ? new Date(this.data.defaultTime) : new Date()
             let selectDay = {
                 year: now.getFullYear(),
