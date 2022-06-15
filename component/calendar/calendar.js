@@ -8,7 +8,7 @@ Component({
             type: Object,
             value: {}
         },
-        defaultTime: { //标记的日期，默认为今日
+        defaultTime: { //标记的日期，默认为今日 注意：传入格式推荐为'2022/1/2'或'2022/01/02', 其他格式在ios系统上可能出现问题
             type: String,
             value: ''
         },
