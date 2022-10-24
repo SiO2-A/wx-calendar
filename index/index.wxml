@@ -1,0 +1,1 @@
+<calendar title="打卡记录" spotMap="{{spotMap}}" bindgetDateList="getDateList" bindselectDay="selectDay"></calendar>
