@@ -164,6 +164,20 @@ Component({
         setDay: appointMonth.getDate(),
         hasBack: true,
       });
+      const disabledDateList = {};
+      if (this.data.disabledDate)
+        dataList.forEach((item) => {
+          if (
+            !this.data.disabledDateList[
+            `disabled${item.year}M${item.month}D${item.day}`
+            ] &&
+            this.data.disabledDate(item)
+          ) {
+            disabledDateList[
+              `disabled${item.year}M${item.month}D${item.day}`
+            ] = true;
+          }
+        });
       this.setData({
         [listName]: dataList,
         disabledDateList: Object.assign(
@@ -307,11 +321,11 @@ Component({
         setDay = this.data.selectDay.day,
         hasBack = false,
       } = {
-        setYear: this.data.selectDay.year,
-        setMonth: this.data.selectDay.month,
-        setDay: this.data.selectDay.day,
-        hasBack: false,
-      }
+          setYear: this.data.selectDay.year,
+          setMonth: this.data.selectDay.month,
+          setDay: this.data.selectDay.day,
+          hasBack: false,
+        }
     ) {
       let dateList = []; //需要遍历的日历数组数据
       let now = new Date(setYear, setMonth - 1); //当前月份的1号
@@ -344,9 +358,9 @@ Component({
           //当前周的7天
           now2.setDate(
             Math.ceil((selectDay + (startWeek - 1)) / 7) * 7 -
-              6 -
-              (startWeek - 1) +
-              i
+            6 -
+            (startWeek - 1) +
+            i
           );
           let obj = {};
           obj = {
@@ -426,12 +440,12 @@ Component({
     triggerEventSelectDay() {
       if (
         !this.data.disabledDateList[
-          'disabled' +
-            this.data.selectDay.year +
-            'M' +
-            this.data.selectDay.month +
-            'D' +
-            this.data.selectDay.day
+        'disabled' +
+        this.data.selectDay.year +
+        'M' +
+        this.data.selectDay.month +
+        'D' +
+        this.data.selectDay.day
         ]
       )
         this.triggerEvent('selectDay', this.data.selectDay);
