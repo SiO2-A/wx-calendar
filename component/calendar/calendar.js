@@ -50,11 +50,12 @@ Component({
    * 组件的初始数据
    */
   data: {
-    selectDay: {}, //选中时间
-    nowDay: {}, //现在时间
+    selectDay: {}, //选中的日期
+    nowDay: {}, //现在的日期
+    disabledDate: {}, //禁用的日期
     open: false,
-    swiperCurrent: 1, //选中时间
-    oldCurrent: 1, //之前选中时间
+    swiperCurrent: 1, //选中的日期
+    oldCurrent: 1, //之前选中的日期
     dateList0: [], //0位置的日历数组
     dateList1: [], //1位置的日历数组
     dateList2: [], //2位置的日历数组
@@ -163,20 +164,6 @@ Component({
         setDay: appointMonth.getDate(),
         hasBack: true,
       });
-      const disabledDateList = {};
-      if (this.data.disabledDate)
-        dataList.forEach((item) => {
-          if (
-            !this.data.disabledDateList[
-              `disabled${item.year}M${item.month}D${item.day}`
-            ] &&
-            this.data.disabledDate(item)
-          ) {
-            disabledDateList[
-              `disabled${item.year}M${item.month}D${item.day}`
-            ] = true;
-          }
-        });
       this.setData({
         [listName]: dataList,
         disabledDateList: Object.assign(
