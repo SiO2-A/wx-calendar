@@ -39,8 +39,8 @@ Page({
     }
     dateListMap.add(key);
     this.setData({
-      dateListMap: [...dateListMap]
-    })
+      dateListMap: [...dateListMap],
+    });
     return true;
   },
   // 日期改变的回调
@@ -49,7 +49,7 @@ Page({
   },
   changetime() {
     this.setData({
-      changeTime: '2022-1-1',
+      changeTime: '2022/1/1',
     });
   },
 });
