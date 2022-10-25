@@ -17,16 +17,6 @@
   transition: height 0.3s;
 }
 
-.slot:empty+.header {
-  display: block;
-  height: 70rpx;
-}
-
-.header {
-  display: none;
-  height: 0rpx;
-}
-
 .header-wrap {
   display: flex;
   justify-content: space-between;
@@ -259,14 +249,4 @@
 .header-wrap .month {
   font-size: 28rpx;
   color: #929797;
-}
-
-.slot:empty+.right {
-  /* 插槽是空 则显示默认插槽 */
-  display: block;
-}
-
-.right {
-  /* 默认情况 我们认为插槽会传值 则不显示 */
-  display: none;
 }

@@ -1,8 +1,5 @@
 <!-- component/calendar/calendar.wxml -->
 <view class="calendar">
-  <view class="slot">
-    <slot name="header"></slot>
-  </view>
   <view class="header">
     <view class="title">
       <view class="header-wrap">
