@@ -1,1 +1,4 @@
-<calendar title="打卡记录" spotMap="{{spotMap}}" bindgetDateList="getDateList" bindselectDay="selectDay"></calendar>
+<calendar title="" spotMap="{{spotMap}}" bindgetDateList="getDateList" bindselectDay="selectDay" disabledDate="{{disabledDate}}" changeTime="{{changeTime}}"></calendar>
+<view class="operation-wrap">
+  <button bindtap="changetime" size="mini">点击跳转至22年1月1日</button>
+</view>

@@ -60,6 +60,12 @@
   align-items: center;
 }
 
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .flex-end {
   display: flex;
   justify-content: flex-end;
@@ -98,8 +104,7 @@
   font-size: 32rpx;
   font-weight: 600;
   color: #1C2525;
-  line-height: 44px;
-  letter-spacing:1px;
+  letter-spacing: 1px;
 }
 
 .calendar .title .year-month {
@@ -158,7 +163,7 @@
 
 .calendar .calendar-week {
   line-height: 40rpx;
-  padding: 0 25rpx;
+  padding: 0 22rpx;
   font-size: 28rpx;
   color: #999;
 }
@@ -169,7 +174,7 @@
 }
 
 .calendar .calendar-main {
-  padding: 18rpx 25rpx 0rpx;
+  padding: 18rpx 22rpx 0rpx;
   transition: height 0.3s;
   align-content: flex-start;
   overflow: hidden;
@@ -238,10 +243,10 @@
 
 .calendar .calendar-main .day .other-month {
   color: #ccc;
+  background: transparent;
 }
 
 .header-wrap .month {
   font-size: 28rpx;
   color: #929797;
-  line-height: 40rpx;
 }
