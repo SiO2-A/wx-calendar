@@ -1,0 +1,17 @@
+// 标点的逻辑计算
+function spot(item, selectDay, spotMap) {
+  // 只有当前月才显示标点
+  if (item.month === selectDay.month) {
+    // 通过年月日拼接的key来判断是否有标点
+    var key = 'y' + item.year + 'm' + item.month + 'd' + item.day;
+    if (spotMap[key]) {
+      return spotMap[key];
+    }
+  }
+  return '';
+};
+// 当前日期的逻辑计算
+
+module.exports = {
+  spot: spot,
+};
