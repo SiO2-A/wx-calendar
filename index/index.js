@@ -47,6 +47,10 @@ Page({
   selectDay({ detail }) {
     console.log(detail, 'selectDay detail');
   },
+  // 展开收起时的回调
+  openChange({ detail }) {
+    console.log(detail, 'openChange detail');
+  },
   changetime() {
     this.setData({
       changeTime: '2022/1/1',

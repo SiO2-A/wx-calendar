@@ -1,0 +1,62 @@
+/*
+ * 使用逻辑判断来控制类名
+ */
+
+// 标点的逻辑计算
+function spot(item, selectDay, spotMap) {
+  // 只有当前月才显示标点
+  if (item.month === selectDay.month) {
+    // 通过年月日拼接的key来判断是否有标点
+    var key = 'y' + item.year + 'm' + item.month + 'd' + item.day;
+    if (spotMap[key]) {
+      return spotMap[key];
+    }
+  }
+  return '';
+}
+// 当前日期的逻辑计算(显示今天的日期)
+function hasNow(item, nowDay) {
+  if (
+    item.year === nowDay.year &&
+    item.month === nowDay.month &&
+    item.day === nowDay.day
+  ) {
+    return 'now';
+  }
+  return '';
+}
+// 当前月的逻辑计算(其他月的日期变灰)
+function hasNowMonth(item, selectDay) {
+  if (item.year === selectDay.year && item.month === selectDay.month) {
+    return '';
+  }
+  return 'other-month';
+}
+// 选中日期的逻辑计算(选中的日期变色)
+function hasSelect(item, selectDay, oldCurrent, listIndex) {
+  if (
+    item.year === selectDay.year &&
+    item.month === selectDay.month &&
+    item.day === selectDay.day &&
+    oldCurrent === listIndex
+  ) {
+    return 'select';
+  }
+  return '';
+}
+// 禁用日期的逻辑计算(禁用的日期变灰)
+function hasDisable(item, disabledDateList) {
+  var key = 'disabled' + item.year + 'M' + item.month + 'D' + item.day;
+  if (disabledDateList[key]) {
+    return 'other-month';
+  }
+  return '';
+}
+
+module.exports = {
+  spot: spot,
+  hasNow: hasNow,
+  hasNowMonth: hasNowMonth,
+  hasSelect: hasSelect,
+  hasDisable: hasDisable,
+}
