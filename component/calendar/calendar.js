@@ -44,6 +44,11 @@ Component({
       type: String,
       value: '',
     },
+    firstDayOfWeek: {
+      // 周起始日
+      type: Number,
+      value: 7,
+    },
   },
 
   /**
@@ -63,6 +68,7 @@ Component({
     swiperHeight: 0,
     backChange: false, //跳过change切换
     disabledDateList: {}, //禁用的日期集合
+    calendarHeadDate: ['一', '二', '三', '四', '五', '六', '日'] //日历头部的渲染数组
   },
 
   /**
@@ -169,7 +175,7 @@ Component({
         dataList.forEach((item) => {
           if (
             !this.data.disabledDateList[
-              `disabled${item.year}M${item.month}D${item.day}`
+            `disabled${item.year}M${item.month}D${item.day}`
             ] &&
             this.data.disabledDate(item)
           ) {
@@ -322,16 +328,16 @@ Component({
         setDay = this.data.selectDay.day,
         hasBack = false,
       } = {
-        setYear: this.data.selectDay.year,
-        setMonth: this.data.selectDay.month,
-        setDay: this.data.selectDay.day,
-        hasBack: false,
-      }
+          setYear: this.data.selectDay.year,
+          setMonth: this.data.selectDay.month,
+          setDay: this.data.selectDay.day,
+          hasBack: false,
+        }
     ) {
       let dateList = []; //需要遍历的日历数组数据
       let now = new Date(setYear, setMonth - 1); //当前月份的1号
       let startWeek = now.getDay(); //目标月1号对应的星期
-      let resetStartWeek = startWeek == 0 ? 6 : startWeek - 1; //重新定义星期将星期天替换为6其余-1
+      let resetStartWeek = (startWeek + this.data.firstDayOfWeek - 1) % 7; //计算星期几的位置
       let dayNum = new Date(setYear, setMonth, 0).getDate(); //当前月有多少天
       let forNum = Math.ceil((resetStartWeek + dayNum) / 7) * 7; //当前月跨越的周数
       let selectDay = setDay ? setDay : this.data.selectDay.day;
@@ -358,10 +364,10 @@ Component({
           const now2 = new Date(now);
           //当前周的7天
           now2.setDate(
-            Math.ceil((selectDay + (startWeek - 1)) / 7) * 7 -
-              6 -
-              (startWeek - 1) +
-              i
+            Math.ceil((selectDay + (resetStartWeek)) / 7) * 7 -
+            6 -
+            (resetStartWeek) +
+            i
           );
           let obj = {};
           obj = {
@@ -441,12 +447,12 @@ Component({
     triggerEventSelectDay() {
       if (
         !this.data.disabledDateList[
-          'disabled' +
-            this.data.selectDay.year +
-            'M' +
-            this.data.selectDay.month +
-            'D' +
-            this.data.selectDay.day
+        'disabled' +
+        this.data.selectDay.year +
+        'M' +
+        this.data.selectDay.month +
+        'D' +
+        this.data.selectDay.day
         ]
       )
         this.triggerEvent('selectDay', this.data.selectDay);

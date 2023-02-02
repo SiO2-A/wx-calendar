@@ -22,13 +22,9 @@
   </view>
   <!-- 日历头部 -->
   <view class="flex-around calendar-week">
-    <view class="view">一</view>
-    <view class="view">二</view>
-    <view class="view">三</view>
-    <view class="view">四</view>
-    <view class="view">五</view>
-    <view class="view">六</view>
-    <view class="view">日</view>
+    <view wx:for="{{calendarHeadDate}}">
+      {{calendarHeadDate[(index-firstDayOfWeek+7)%7]}}
+    </view>
   </view>
   <!-- 日历主体 -->
   <swiper class="swiper" style="height:{{swiperHeight}}rpx" bindchange="swiperChange" circular="{{true}}" current="{{swiperCurrent}}" duration="{{swiperDuration}}">
