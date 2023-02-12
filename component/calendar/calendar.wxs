@@ -3,9 +3,9 @@
  */
 
 // 标点的逻辑计算
-function spot(item, selectDay, spotMap) {
+function spot(item, dayLocation, spotMap) {
   // 只有当前月才显示标点
-  if (item.month === selectDay.month) {
+  if (item.month === dayLocation.month) {
     // 通过年月日拼接的key来判断是否有标点
     var key = 'y' + item.year + 'm' + item.month + 'd' + item.day;
     if (spotMap[key]) {
@@ -26,8 +26,8 @@ function hasNow(item, nowDay) {
   return '';
 }
 // 当前月的逻辑计算(其他月的日期变灰)
-function hasNowMonth(item, selectDay) {
-  if (item.year === selectDay.year && item.month === selectDay.month) {
+function hasNowMonth(item, dayLocation, open) {
+  if ((item.year === dayLocation.year && item.month === dayLocation.month)||!open) {
     return '';
   }
   return 'other-month';

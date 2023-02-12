@@ -55,6 +55,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    dayLocation: {}, //定位的日期
     selectDay: {}, //选中的日期
     nowDay: {}, //现在的日期
     disabledDate: {}, //禁用的日期
@@ -90,18 +91,21 @@ Component({
       if (dif === -2 || (dif > 0 && dif !== 2)) {
         //向右划的情况，日期增加
         if (this.data.open) {
-          date = new Date(this.data.selectDay.year, this.data.selectDay.month);
+          date = new Date(this.data.dayLocation.year, this.data.dayLocation.month);
           this.setMonth(date.getFullYear(), date.getMonth() + 1, undefined);
           this.getIndexList({
-            setYear: this.data.selectDay.year,
-            setMonth: this.data.selectDay.month,
+            setYear: this.data.dayLocation.year,
+            setMonth: this.data.dayLocation.month,
             dateIndex: rest,
           });
+          this.setData({
+            ['dayLocation.day']:1
+          })
         } else {
           date = new Date(
-            this.data.selectDay.year,
-            this.data.selectDay.month - 1,
-            this.data.selectDay.day + 7
+            this.data.dayLocation.year,
+            this.data.dayLocation.month - 1,
+            this.data.dayLocation.day + 7
           );
           this.setMonth(
             date.getFullYear(),
@@ -109,9 +113,9 @@ Component({
             date.getDate()
           );
           this.getIndexList({
-            setYear: this.data.selectDay.year,
-            setMonth: this.data.selectDay.month - 1,
-            setDay: this.data.selectDay.day + 7,
+            setYear: this.data.dayLocation.year,
+            setMonth: this.data.dayLocation.month - 1,
+            setDay: this.data.dayLocation.day + 7,
             dateIndex: rest,
           });
         }
@@ -119,20 +123,23 @@ Component({
         //向左划的情况，日期减少
         if (this.data.open) {
           date = new Date(
-            this.data.selectDay.year,
-            this.data.selectDay.month - 2
+            this.data.dayLocation.year,
+            this.data.dayLocation.month - 2
           );
           this.setMonth(date.getFullYear(), date.getMonth() + 1, undefined);
           this.getIndexList({
-            setYear: this.data.selectDay.year,
-            setMonth: this.data.selectDay.month - 2,
+            setYear: this.data.dayLocation.year,
+            setMonth: this.data.dayLocation.month - 2,
             dateIndex: rest,
           });
+          this.setData({
+            ['dayLocation.day']:1
+          })
         } else {
           date = new Date(
-            this.data.selectDay.year,
-            this.data.selectDay.month - 1,
-            this.data.selectDay.day - 7
+            this.data.dayLocation.year,
+            this.data.dayLocation.month - 1,
+            this.data.dayLocation.day - 7
           );
           this.setMonth(
             date.getFullYear(),
@@ -140,9 +147,9 @@ Component({
             date.getDate()
           );
           this.getIndexList({
-            setYear: this.data.selectDay.year,
-            setMonth: this.data.selectDay.month - 1,
-            setDay: this.data.selectDay.day - 7,
+            setYear: this.data.dayLocation.year,
+            setMonth: this.data.dayLocation.month - 1,
+            setDay: this.data.dayLocation.day - 7,
             dateIndex: rest,
           });
         }
@@ -210,14 +217,14 @@ Component({
     setMonth(setYear, setMonth, setDay) {
       const day = Math.min(
         new Date(setYear, setMonth, 0).getDate(),
-        this.data.selectDay.day
+        this.data.dayLocation.day
       );
       if (
-        this.data.selectDay.year !== setYear ||
-        this.data.selectDay.month !== setMonth
+        this.data.dayLocation.year !== setYear ||
+        this.data.dayLocation.month !== setMonth
       ) {
         const data = {
-          selectDay: {
+          dayLocation: {
             year: setYear,
             month: setMonth,
             day: setDay ? setDay : day,
@@ -227,11 +234,11 @@ Component({
           data.open = true;
         }
         this.setData(data, () => {
-          this.triggerEventSelectDay();
+          // this.triggerEventSelectDay();
         });
       } else {
         const data = {
-          selectDay: {
+          dayLocation: {
             year: setYear,
             month: setMonth,
             day: setDay ? setDay : day,
@@ -253,9 +260,9 @@ Component({
       });
       // 更新数据
       const selectDate = new Date(
-        this.data.selectDay.year,
-        this.data.selectDay.month - 1,
-        this.data.selectDay.day
+        this.data.dayLocation.year,
+        this.data.dayLocation.month - 1,
+        this.data.dayLocation.day
       );
       if (this.data.oldCurrent === 0) {
         this.updateList(selectDate, -1, 2);
@@ -275,9 +282,9 @@ Component({
     // 选中并切换今日日期
     witchDate(setDate) {
       const selectDate = new Date(
-        this.data.selectDay.year,
-        this.data.selectDay.month - 1,
-        this.data.selectDay.day
+        this.data.dayLocation.year,
+        this.data.dayLocation.month - 1,
+        this.data.dayLocation.day
       );
       let dateDiff =
         (selectDate.getFullYear() - setDate.getFullYear()) * 12 +
@@ -304,6 +311,11 @@ Component({
       });
       this.setData(
         {
+          dayLocation: {
+            year: setDate.getFullYear(),
+            month: setDate.getMonth() + 1,
+            day: setDate.getDate(),
+          },
           selectDay: {
             year: setDate.getFullYear(),
             month: setDate.getMonth() + 1,
@@ -325,12 +337,12 @@ Component({
       {
         setYear,
         setMonth,
-        setDay = this.data.selectDay.day,
+        setDay = this.data.dayLocation.day,
         hasBack = false,
       } = {
-          setYear: this.data.selectDay.year,
-          setMonth: this.data.selectDay.month,
-          setDay: this.data.selectDay.day,
+          setYear: this.data.dayLocation.year,
+          setMonth: this.data.dayLocation.month,
+          setDay: this.data.dayLocation.day,
           hasBack: false,
         }
     ) {
@@ -340,7 +352,7 @@ Component({
       let resetStartWeek = (startWeek + this.data.firstDayOfWeek - 1) % 7; //计算星期几的位置
       let dayNum = new Date(setYear, setMonth, 0).getDate(); //当前月有多少天
       let forNum = Math.ceil((resetStartWeek + dayNum) / 7) * 7; //当前月跨越的周数
-      let selectDay = setDay ? setDay : this.data.selectDay.day;
+      let dayLocation = setDay ? setDay : this.data.dayLocation.day;
       this.triggerEvent('getDateList', {
         setYear: now.getFullYear(),
         setMonth: now.getMonth() + 1,
@@ -364,7 +376,7 @@ Component({
           const now2 = new Date(now);
           //当前周的7天
           now2.setDate(
-            Math.ceil((selectDay + (resetStartWeek)) / 7) * 7 -
+            Math.ceil((dayLocation + (resetStartWeek)) / 7) * 7 -
             6 -
             (resetStartWeek) +
             i
@@ -387,22 +399,24 @@ Component({
     },
     // 一天被点击时
     selectChange(e) {
+      const key = 'disabled' + e.currentTarget.dataset.year + 'M' + e.currentTarget.dataset.month + 'D' + e.currentTarget.dataset.day;
+      if (this.data.disabledDateList[key]) return;
       const year = e.currentTarget.dataset.year;
       const month = e.currentTarget.dataset.month;
       const day = e.currentTarget.dataset.day;
-      const selectDay = {
+      const dayLocation = {
         year: year,
         month: month,
         day: day,
       };
       if (
         this.data.open &&
-        (this.data.selectDay.year !== year ||
-          this.data.selectDay.month !== month)
+        (this.data.dayLocation.year !== year ||
+          this.data.dayLocation.month !== month)
       ) {
         if (
           year * 12 + month >
-          this.data.selectDay.year * 12 + this.data.selectDay.month
+          this.data.dayLocation.year * 12 + this.data.dayLocation.month
         ) {
           // 下个月
           if (this.data.oldCurrent == 2)
@@ -426,22 +440,24 @@ Component({
         }
         this.setData(
           {
-            ['selectDay.day']: day,
-          },
-          () => {
-            this.triggerEventSelectDay();
+            ['dayLocation.day']: day,
           }
         );
-      } else if (this.data.selectDay.day !== day) {
+      } else if (this.data.dayLocation.day !== day) {
         this.setData(
           {
-            selectDay: selectDay,
-          },
-          () => {
-            this.triggerEventSelectDay();
+            dayLocation: dayLocation,
           }
         );
       }
+      this.setData(
+        {
+          selectDay: dayLocation,
+        },
+        () => {
+          this.triggerEventSelectDay();
+        }
+      );
     },
     // 选择某天时触发的事件
     triggerEventSelectDay() {
@@ -491,7 +507,7 @@ Component({
       let now = this.data.defaultTime
         ? new Date(this.data.defaultTime)
         : new Date();
-      let selectDay = {
+      let dayLocation = {
         year: now.getFullYear(),
         month: now.getMonth() + 1,
         day: now.getDate(),
@@ -502,8 +518,13 @@ Component({
           month: now.getMonth() + 1,
           day: now.getDate(),
         },
+        selectDay: {
+          year: now.getFullYear(),
+          month: now.getMonth() + 1,
+          day: now.getDate(),
+        }
       });
-      this.setMonth(selectDay.year, selectDay.month, selectDay.day);
+      this.setMonth(dayLocation.year, dayLocation.month, dayLocation.day);
       this.updateList(now, -1, 0);
       this.updateList(now, 0, 1);
       this.updateList(now, 1, 2);

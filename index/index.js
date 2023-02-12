@@ -12,11 +12,11 @@ Page({
       y2023m5d10: 'spot',
     },
     // 例子，今天之后的日期不能被选中
-    // disabledDate({ day, month, year }) {
-    //   const now = new Date();
-    //   const date = new Date(year, month - 1, day);
-    //   return date > now;
-    // },
+    disabledDate({ day, month, year }) {
+      const now = new Date();
+      const date = new Date(year, month - 1, day);
+      return date > now;
+    },
     // 需要改变日期时所使用的字段
     changeTime: '',
     // 存储已经获取过的日期
