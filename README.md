@@ -1,8 +1,6 @@
 # 日历组件，带标点带展开功能
 
-<p align="center">
-    ![示例图](cnblogsImg.gif)
-</p>
+![示例图](cnblogsImg.gif)
 
 > /component/calendar 组件主体
 
