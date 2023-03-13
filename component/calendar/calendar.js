@@ -34,11 +34,8 @@ Component({
       type: Boolean,
       value: true,
     },
-    disabledDate: {
-      // 指定不可用日期
-      type: Function,
-      value: undefined,
-    },
+    // 指定不可用日期
+    disabledDate:null,
     changeTime: {
       // 要改变的日期
       type: String,
@@ -57,7 +54,6 @@ Component({
   data: {
     selectDay: {}, //选中的日期
     nowDay: {}, //现在的日期
-    disabledDate: {}, //禁用的日期
     open: false,
     swiperCurrent: 1, //选中的日期
     oldCurrent: 1, //之前选中的日期

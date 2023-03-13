@@ -168,7 +168,7 @@
   color: #999;
 }
 
-.calendar .calendar-week view {
+.calendar .calendar-week .calendar-week-item {
   width: 100rpx;
   text-align: center;
 }

@@ -22,7 +22,7 @@
   </view>
   <!-- 日历头部 -->
   <view class="flex-around calendar-week">
-    <view wx:for="{{calendarHeadDate}}">
+    <view class="calendar-week-item" wx:for="{{calendarHeadDate}}" wx:key="item">
       {{calendarHeadDate[(index-firstDayOfWeek+7)%7]}}
     </view>
   </view>
